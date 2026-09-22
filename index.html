@@ -18,6 +18,31 @@ stroke-width:1.55px;stroke-linejoin:round}
 filter:drop-shadow(0 0 5px rgba(255,40,55,.72))}
 .tile.done polygon{fill:url(#tileDone);stroke:#72df8a;stroke-width:3;
 filter:drop-shadow(0 0 5px rgba(90,220,115,.48))}.tile.done text{fill:#e4ffe8}.tile.repeatable polygon{stroke:var(--tile-border,#e32635);stroke-width:2.0;stroke-dasharray:none;filter:none}.tile.repeatable .repeatable-lines{stroke:#ff4fd8;stroke-width:2;stroke-opacity:.13;stroke-dasharray:5 6;fill:none;pointer-events:none}.tile.repeatable-count-1 polygon{fill:rgba(190,55,65,.38)!important}.tile.repeatable-count-2 polygon{fill:rgba(190,165,35,.42)!important}.tile.repeatable-count-3 polygon{fill:rgba(55,175,85,.48)!important}.tile.repeatable-count-3 .repeatable-lines{stroke-opacity:.08}
+
+/* Bonus badges: wide horizontal hexagons so the labels remain readable at any screen width. */
+.bonus-tiles{position:absolute;top:calc(24% + 14px);left:0;width:100%;z-index:20;display:flex;gap:clamp(6px,1vw,12px);align-items:flex-start;justify-content:center;pointer-events:none;transform:translateX(-9px)}
+.bonus-star{position:relative;width:min(150px,calc((100vw - 40px)/3));height:min(72px,calc((100vw - 40px)/6.2));min-width:0;display:flex;align-items:center;justify-content:center;background:transparent;border:0;filter:drop-shadow(0 0 5px rgba(255,198,48,.26));cursor:pointer;pointer-events:auto;color:#fff;text-align:center;font-family:Arial,"Helvetica Neue",sans-serif;font-weight:900;font-size:clamp(9px,1vw,12px);line-height:1.02;letter-spacing:-.1px;text-shadow:0 1px 2px #000,0 0 3px #000;padding:0;overflow:visible}
+.bonus-star::before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,rgba(255,214,72,.96),rgba(176,103,18,.96));clip-path:polygon(6% 14%,18% 14%,15% 0,34% 9%,50% 0,66% 9%,85% 0,82% 14%,94% 14%,90% 50%,94% 86%,82% 86%,85% 100%,66% 91%,50% 100%,34% 91%,15% 100%,18% 86%,6% 86%,10% 50%);z-index:0}
+.bonus-star::after{content:"";position:absolute;left:50%;top:50%;width:98%;height:92%;transform:translate(-50%,-50%);background:rgba(12,14,18,.9);clip-path:polygon(9% 16%,20% 16%,18% 8%,35% 15%,50% 8%,65% 15%,82% 8%,80% 16%,91% 16%,87% 50%,91% 84%,80% 84%,82% 92%,65% 85%,50% 92%,35% 85%,18% 92%,20% 84%,9% 84%,13% 50%);z-index:1}
+.bonus-star > span:first-child{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;width:82%;max-width:82%;min-height:54%;text-align:center;white-space:normal;overflow:visible;line-height:1.08}
+.bonus-star > span:first-child > span:not(.bonus-status){display:block;width:100%;white-space:nowrap}
+.bonus-star:hover{filter:drop-shadow(0 0 8px rgba(255,220,90,.52))}
+.bonus-star.claimed{cursor:default}
+.bonus-star.claimed.team1{}
+.bonus-star.claimed.team2{}
+.bonus-star.claimed.team3{}
+.bonus-star.team1::before{background:linear-gradient(145deg,rgba(74,211,105,.97),rgba(24,112,52,.97))}
+.bonus-star.team2::before{background:linear-gradient(145deg,rgba(74,157,255,.97),rgba(28,78,145,.97))}
+.bonus-star.team3::before{background:linear-gradient(145deg,rgba(244,92,92,.97),rgba(145,27,27,.97))}
+.bonus-star.team1{filter:drop-shadow(0 0 6px rgba(74,211,105,.30))}
+.bonus-star.team2{filter:drop-shadow(0 0 6px rgba(74,157,255,.30))}
+.bonus-star.team3{filter:drop-shadow(0 0 6px rgba(244,92,92,.30))}
+.bonus-star.locked{opacity:.55;cursor:not-allowed}
+.bonus-star.team1.locked{filter:drop-shadow(0 0 4px rgba(74,211,105,.20))}
+.bonus-star.team2.locked{filter:drop-shadow(0 0 4px rgba(74,157,255,.20))}
+.bonus-star.team3.locked{filter:drop-shadow(0 0 4px rgba(244,92,92,.20))}
+.bonus-star .bonus-status{display:none}
+@media (max-width:900px){.bonus-tiles{top:calc(25% + 12px);gap:6px;transform:translateX(-9px)}.bonus-star{width:min(140px,calc((100vw - 28px)/3));height:min(68px,calc((100vw - 28px)/6.1));font-size:clamp(9px,2.7vw,11px)}.bonus-star > span:first-child{width:82%;max-width:82%;min-height:54%}.bonus-star::after{width:98%;height:92%}}
 .controls{display:none}
 button{height:54px;border:2px solid #e32635;background:rgba(7,8,9,.92);color:#fff;
 font:700 17px Georgia,"Times New Roman",serif;padding:0 24px;cursor:pointer}
@@ -69,7 +94,12 @@ color:#fff;text-align:center;border:2px solid #e32635;box-shadow:0 0 30px rgba(2
 <img alt="" aria-hidden="true" class="hidden-emblem hidden-emblem-1" src="https://cdn.discordapp.com/emojis/1516946381024006325.webp?size=96"/>
 <img alt="" aria-hidden="true" class="hidden-emblem hidden-emblem-2" src="https://cdn.discordapp.com/emojis/1516946381024006325.webp?size=96"/>
 <img alt="" aria-hidden="true" class="hidden-emblem hidden-emblem-3" src="https://cdn.discordapp.com/emojis/1516946381024006325.webp?size=96"/>
-</div><svg aria-label="27 Gang Bingo" class="board" preserveaspectratio="xMidYMid meet" viewbox="20 145 960 720">
+</div><div class="bonus-tiles" id="bonusTiles" aria-label="Bonus tiles">
+<button class="bonus-star" data-bonus="jad" type="button"><span><span>6 Jad</span><span>Challenge</span><span class="bonus-status"></span></span></button>
+<button class="bonus-star" data-bonus="quiver" type="button"><span><span>First Time</span><span>Quiver</span><span class="bonus-status"></span></span></button>
+<button class="bonus-star" data-bonus="inferno" type="button"><span><span>First Time</span><span>Inferno</span><span class="bonus-status"></span></span></button>
+</div>
+<svg aria-label="27 Gang Bingo" class="board" preserveaspectratio="xMidYMid meet" viewbox="20 145 960 720">
 <defs>
 <lineargradient id="tile" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#252a30"></stop>
 <stop offset="50%" stop-color="#14171b"></stop><stop offset="100%" stop-color="#090a0c"></stop></lineargradient>
@@ -145,17 +175,19 @@ teams=[...root.querySelectorAll('.team')],resetBtn=document.getElementById('rese
 statsBtn=document.getElementById('statsBtn'),playersBtn=document.getElementById('playersBtn'),statsModal=document.getElementById('statsModal'),playersModal=document.getElementById('playersModal'),playerPickModal=document.getElementById('playerPickModal'),
 closeStats=document.getElementById('closeStats'),closePlayers=document.getElementById('closePlayers'),cancelPlayerPick=document.getElementById('cancelPlayerPick'),statsList=document.getElementById('statsList'),playersContent=document.getElementById('playersContent'),playerPickList=document.getElementById('playerPickList'),completionNote=document.getElementById('completionNote'),hideBtn=document.getElementById('hideBtn'),revealBtn=document.getElementById('revealBtn'),hideModal=document.getElementById('hideModal'),revealModal=document.getElementById('revealModal'),hideList=document.getElementById('hideList'),revealList=document.getElementById('revealList'),cancelHide=document.getElementById('cancelHide'),applyHide=document.getElementById('applyHide'),cancelReveal=document.getElementById('cancelReveal'),applyReveal=document.getElementById('applyReveal'),
 states=[new Set(),new Set(),new Set()],completions=[{}, {}, {}],completionCounts=[{}, {}, {}],members=[{}, {}, {}];
+const bonusNames={jad:'6 Jad Challenge',quiver:'First Time Quiver',inferno:'First Time Inferno'};
+let bonusClaims={};
 const repeatableNames=new Set(['Big Fish','Obor Club or Bryo Staff','Woodcutting xp','Sailing xp','Firemaking XP','Fishing xp','Vale Totems Unique','Barrows 6x Piece','Thieving XP','Wildy Shield','Enhanced teleport seed or blood shard','Zenyte','Synapse','Huey']);
 let hiddenTiles=new Set(),hiddenSelection=new Set(),hiddenSelectionLoaded=false,active=0,statsTeam=0,pendingTile=null;
 let passwordAction=null;
 const teamRefs=[0,1,2].map(i=>db.ref('teams/'+i));
 const memberRefs=[0,1,2].map(i=>db.ref('members/'+i));
-const hiddenRef=db.ref('hiddenTiles'),hiddenSelectionRef=db.ref('hiddenSelection');
+const hiddenRef=db.ref('hiddenTiles'),hiddenSelectionRef=db.ref('hiddenSelection'),bonusRef=db.ref('bonusTiles');
 function repeatablesAreUnlocked(){return [...hiddenSelection].some(tile=>!hiddenTiles.has(tile));}
 function isRepeatableTile(tile){return repeatablesAreUnlocked() && repeatableNames.has(tileName(tile));}
 function getTileCount(team,tile){return completionCounts[team][tile]||0;}
 function render(){
-  tiles.forEach(t=>{
+tiles.forEach(t=>{
     const tile=+t.dataset.tile,count=getTileCount(active,tile),repeatable=isRepeatableTile(t);
     t.style.display=hiddenTiles.has(tile)?'none':'';
     t.classList.toggle('done',count>0);
@@ -167,6 +199,17 @@ function render(){
     t.setAttribute('data-completions',String(count));
   });
   teams.forEach((b,i)=>b.classList.toggle('active',i===active));
+  document.querySelectorAll('.bonus-star').forEach(b=>{
+    const claim=bonusClaims[b.dataset.bonus];
+    const status=b.querySelector('.bonus-status');
+    b.classList.toggle('claimed',!!claim);
+    b.classList.toggle('locked',!!claim && Number(claim.team)!==active);
+    b.classList.toggle('team1',!!claim && Number(claim.team)===0);
+    b.classList.toggle('team2',!!claim && Number(claim.team)===1);
+    b.classList.toggle('team3',!!claim && Number(claim.team)===2);
+    if(claim){status.textContent='Team '+(Number(claim.team)+1)+' claimed';}
+    else {status.textContent='Available';}
+  });
 }
 function normalizeCompletion(value){
   if(value===true) return {name:'Unassigned',legacy:true,count:1,players:[{name:'Unassigned'}]};
@@ -264,6 +307,27 @@ function renderPlayers(){
     add.onclick=doAdd;input.onkeydown=e=>{if(e.key==='Enter')doAdd()};form.append(input,add);block.append(list,form);playersContent.appendChild(block);
   }
 }
+bonusRef.on('value',snap=>{bonusClaims=snap.val()||{};render();});
+document.querySelectorAll('.bonus-star').forEach(b=>b.addEventListener('click',()=>{const key=b.dataset.bonus;if(!bonusClaims[key])openBonusPick(key);}));
+function claimBonus(key,playerId,playerName){
+  if(bonusClaims[key])return;
+  const claimRef=bonusRef.child(key);
+  claimRef.transaction(current=>current===null?{team:active,playerId,playerName,claimedAt:firebase.database.ServerValue.TIMESTAMP}:undefined).then(result=>{
+    if(!result.committed)return;
+    bonusClaims[key]=result.snapshot.val();
+    render();
+  });
+}
+function openBonusPick(key){
+  if(bonusClaims[key])return;
+  pendingTile=null;
+  playerPickList.innerHTML='';
+  completionNote.textContent='Choose the Team '+(active+1)+' player who completed '+bonusNames[key]+'. This bonus can only be claimed once by one team.';
+  const roster=Object.entries(members[active]).sort((a,b)=>String(a[1]?.name||'').localeCompare(String(b[1]?.name||'')));
+  if(!roster.length){playerPickList.innerHTML='<div class="player-pick-empty">No players are configured for Team '+(active+1)+'. Add the team members from the hamburger menu.</div>';return;}
+  roster.forEach(([id,m])=>{const b=document.createElement('button');b.textContent=String(m.name||'Unnamed');b.onclick=()=>{playerPickModal.style.display='none';claimBonus(key,id,String(m.name||'Unnamed'));};playerPickList.appendChild(b);});
+  playerPickModal.style.display='flex';
+}
 function renderPlayerPick(){
   playerPickList.innerHTML='';
   const tile=pendingTile,tileEl=tile===null?null:tiles.find(t=>+t.dataset.tile===tile);
@@ -326,7 +390,7 @@ cancelPlayerPick.addEventListener('click',()=>{pendingTile=null;playerPickModal.
 document.querySelectorAll('[data-stats-team]').forEach(b=>b.onclick=()=>{statsTeam=Number(b.dataset.statsTeam);renderStats()});
 resetBtn.addEventListener('click',()=>{openMenu();requestPassword('reset')});
 function requestPassword(action){passwordAction=action;passwordTitle.textContent=action==='reset'?'Reset Board':'Reveal Tiles';passwordNote.textContent=action==='reset'?'Enter the committee password to reset Team '+(active+1)+'.':'Enter the committee password to reveal the selected hidden tiles.';passwordInput.value='';passwordError.textContent='';passwordModal.style.display='flex';setTimeout(()=>passwordInput.focus(),0);}
-function submitPasswordAction(){if(passwordInput.value.trim()!=='2727'){passwordError.textContent='Incorrect password.';passwordInput.select();return;}const action=passwordAction;passwordAction=null;passwordModal.style.display='none';passwordInput.value='';if(action==='reveal'){const updates={};[...hiddenSelection].filter(tile=>hiddenTiles.has(tile)).forEach(tile=>updates[tile]=null);if(Object.keys(updates).length) hiddenRef.update(updates);}else if(action==='reset'){teamRefs[active].remove();states[active].clear();completions[active]={};completionCounts[active]={};render();}}
+function submitPasswordAction(){if(passwordInput.value.trim()!=='2727'){passwordError.textContent='Incorrect password.';passwordInput.select();return;}const action=passwordAction;passwordAction=null;passwordModal.style.display='none';passwordInput.value='';if(action==='reveal'){const updates={};[...hiddenSelection].filter(tile=>hiddenTiles.has(tile)).forEach(tile=>updates[tile]=null);if(Object.keys(updates).length) hiddenRef.update(updates);}else if(action==='reset'){Promise.all([teamRefs[active].remove(),bonusRef.remove()]).then(()=>{states[active].clear();completions[active]={};completionCounts[active]={};bonusClaims={};render();});}}
 cancelPassword.addEventListener('click',()=>{passwordAction=null;passwordModal.style.display='none';passwordInput.value='';passwordError.textContent=''});
 submitPassword.addEventListener('click',submitPasswordAction);
 passwordInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();submitPasswordAction();}else if(e.key==='Escape'){cancelPassword.click();}});
