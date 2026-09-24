@@ -186,7 +186,7 @@ closeStats=document.getElementById('closeStats'),closePlayers=document.getElemen
 states=[new Set(),new Set(),new Set()],completions=[{}, {}, {}],completionCounts=[{}, {}, {}],members=[{}, {}, {}];
 const bonusNames={jad:'6 Jad Challenge',quiver:'First Time Quiver',inferno:'First Time Inferno'};
 let bonusClaims={};
-const repeatableNames=new Set(['Big Fish','Obor Club or Bryo Staff','Woodcutting xp','Sailing xp','Firemaking XP','Fishing xp','Vale Totems Unique','Barrows 6x Piece','Thieving XP','Wildy Shield','Enhanced teleport seed or blood shard','Zenyte','Synapse','Huey']);
+const repeatableNames=new Set(['Big Fish','Obor Club or Bryo Staff','Woodcutting xp','Fishing xp','Vale Totems Unique','Barrows 6x Piece','Thieving XP','Wildy Shield','Enhanced teleport seed or blood shard','Zenyte','Synapse']);
 let hiddenTiles=new Set(),hiddenSelection=new Set(),hiddenSelectionLoaded=false,active=0,statsTeam=0,pendingTile=null;
 let passwordAction=null;
 const teamRefs=[0,1,2].map(i=>db.ref('teams/'+i));
